@@ -11,4 +11,4 @@
 - Buka aplikasi laravel lewat browser dengan masuk ke URL localhost:8000
 - Selamat Mencoba! ^^ 
 
-Bootstrap Template: Zuramai by <a href="https://github.com/zuramai/mazer"></a>
+Bootstrap Template: Mazer by <a href="https://github.com/zuramai/mazer">Zuramai</a>
