@@ -74,6 +74,7 @@
                                             <option value="Flamboyan">Flamboyan</option>
                                             <option value="Kamboja">Kamboja</option>
                                             <option value="Bougenville">Bougenville</option>
+                                            <option value="Kebidanan">Kebidanan</option>
                                         </select>
                                     </fieldset>
                                 </div>

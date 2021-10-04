@@ -24,8 +24,9 @@ class KamarController extends Controller
         $flamboyan = Kamar::where('gedung', 'flamboyan')->get();
         $melati = Kamar::where('gedung', 'melati')->get();
         $kamboja = Kamar::where('gedung', 'kamboja')->get();
+        $kebidanan = Kamar::where('gedung', 'kebidanan')->get();
 
-        return view('pages.kamar.index', compact('bougenville', 'flamboyan', 'melati', 'kamboja'));
+        return view('pages.kamar.index', compact('bougenville', 'flamboyan', 'melati', 'kamboja', 'kebidanan'));
     }
 
     /**

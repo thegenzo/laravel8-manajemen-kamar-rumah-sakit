@@ -74,6 +74,7 @@
                                             <option value="Flamboyan" {{ $kamar->gedung == 'Flamboyan' ? 'selected' : '' }}>Flamboyan</option>
                                             <option value="Kamboja" {{ $kamar->gedung == 'Kamboja' ? 'selected' : '' }}>Kamboja</option>
                                             <option value="Bougenville" {{ $kamar->gedung == 'Bougenville' ? 'selected' : '' }}>Bougenville</option>
+                                            <option value="Kebidanan" {{ $kamar->gedung == 'Kebidanan' ? 'selected' : '' }}>Kebidanan</option>
                                         </select>
                                     </fieldset>
                                 </div>

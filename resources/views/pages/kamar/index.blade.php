@@ -257,7 +257,6 @@
                                     data-bs-placement="bottom" title="Edit Kamar">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                @if(($data->pasien->count()) || ($data->pasien_anak->count()))
                                 <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
                                     @csrf
                                     @method('DELETE')
@@ -266,7 +265,6 @@
                                         <i class="bi bi-trash-fill swal-confirm"></i>
                                     </button>
                                 </form>
-                                @endif
                             </td>
                             @endif
                         </tr>
@@ -280,7 +278,68 @@
             </div>
         </div>
 
-        
+        <!-- Gedung Kebidanan -->
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">
+                    Gedung Kebidanan
+                </h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table4">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th>Nama Kamar</th>
+                            <th>Kelas</th>
+                            <th>Status</th>
+                            @if (auth()->user()->level == 'admin')
+                            <th class="text-center">Action</th>
+                            @endif
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($kebidanan as $data)
+                        <tr>
+                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td>{{ $data->nama_kamar }}</td>
+                            <td>{{ $data->kelas }}</td>
+                            @if ($data->status == 'kosong')
+                            <td>
+                                <span class="badge bg-success">Kosong</span>
+                            </td>
+                            @else
+                            <td>
+                                <span class="badge bg-danger">Terisi Oleh {{ \App\Models\Pasien::where('id_kamar', $data->id)->first()->nama_pasien ?? \App\Models\PasienAnak::where('id_kamar', $data->id)->first()->nama_pasien }}</span>
+                                <br>
+                            </td>
+                            @endif
+                            @if (auth()->user()->level == 'admin')
+                            <td class="text-center">
+                                <a href="{{ route('kamar.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Edit Kamar">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="Hapus Kamar">
+                                        <i class="bi bi-trash-fill swal-confirm"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            @endif
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Data Kosong</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </section>
 </div>
