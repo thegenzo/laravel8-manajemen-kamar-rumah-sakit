@@ -3,7 +3,7 @@
 @section('title', 'Data Kamar')
 
 @push('addon-style')
-<link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" media="screen">
 @endpush
 
 @section('content')
@@ -34,7 +34,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="table1">
+                <table class="table table-striped" id="TABLE_1">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
@@ -97,7 +97,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="table2">
+                <table class="table table-striped" id="TABLE_2">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
@@ -160,7 +160,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="table3">
+                <table class="table table-striped" id="TABLE_3">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
@@ -223,7 +223,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="table4">
+                <table class="table table-striped" id="TABLE_4">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
@@ -286,7 +286,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="table4">
+                <table class="table table-striped" id="TABLE_5">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
@@ -346,20 +346,17 @@
 @endsection
 
 @push('addon-script')
-<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
-    // Simple Datatable
-    let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
-
-    let table2 = document.querySelector('#table2');
-    let dataTable = new simpleDatatables.DataTable(table2);
-
-    let table3 = document.querySelector('#table3');
-    let dataTable = new simpleDatatables.DataTable(table3);
-    
-    let table4 = document.querySelector('#table4');
-    let dataTable = new simpleDatatables.DataTable(table4);
+    $(document).ready(function() {
+        $("table[id^='TABLE']").DataTable( {
+            "scrollY": "200px",
+            "scrollCollapse": true,
+            "searching": true,
+            "paging": true
+        } );
+    });
 
     // konfirmasi sebelum menghapus data
     $('.swal-confirm').click(function(event) {
