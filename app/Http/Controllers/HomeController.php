@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kamar;
 use App\Models\Pasien;
+use App\Models\PasienAnak;
 use App\Models\Diagnosa;
 use App\Models\DiagnosaAnak;
 
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $melTerisi = Kamar::where('gedung', 'Melati')->where('status', 'terisi')->count();
 
         $pasienAktif = Pasien::where('status_inap', 1)->get();
+        $pasienAktifAnak = PasienAnak::where('status_inap', 1)->get();
 
         // ----------- DATA UNTUK CHARTJS ------------ //
         // Status Pasien Dewasa
@@ -42,6 +44,6 @@ class HomeController extends Controller
         $meninggalAnak = DiagnosaAnak::where('status_pasien', 'Meninggal')->count();
 
         return view('pages.home', compact('flamKosong', 'flamTerisi', 'bougenKosong', 'bougenTerisi', 'kambKosong', 'kambTerisi', 'melKosong', 'melTerisi', 'pasienAktif',
-                                            'sembuh', 'rujukan', 'meninggal', 'sembuhAnak', 'rujukanAnak', 'meninggalAnak'));
+                                            'pasienAktifAnak', 'sembuh', 'rujukan', 'meninggal', 'sembuhAnak', 'rujukanAnak', 'meninggalAnak'));
     }
 }
