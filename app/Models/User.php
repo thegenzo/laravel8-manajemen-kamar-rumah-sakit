@@ -48,11 +48,11 @@ class User extends Authenticatable
 
     public function perawat()
     {
-        return $this->hasOne(Perawat::class, 'id_perawat');
+        return $this->hasOne(Perawat::class, 'id_user');
     }
 
     public function admin()
     {
-        return $this->hasOne(Admin::class, 'id_admin');
+        return $this->hasOne(Admin::class, 'id_user');
     }
 }
