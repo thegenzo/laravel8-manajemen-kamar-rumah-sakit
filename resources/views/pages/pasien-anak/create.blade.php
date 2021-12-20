@@ -99,13 +99,13 @@
                                 </div>
                                 <div class="col-lg-10 col-9">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki">
+                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="L">
                                         <label class="form-check-label" for="laki-laki">
                                             Laki-laki
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan">
+                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="P">
                                         <label class="form-check-label" for="perempuan">
                                             Perempuan
                                         </label>

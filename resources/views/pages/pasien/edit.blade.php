@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="py-4">
+                        <hr class="my-4">
                         <div class="col-md-12">
                             <div class="form-group row align-items-center">
                                 <div class="col-lg-2 col-3">
@@ -177,6 +177,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr class="my-4">
                         <div class="col-md-12">
                             <div class="form-group row align-items-center">
                                 <div class="col-lg-2 col-3">
