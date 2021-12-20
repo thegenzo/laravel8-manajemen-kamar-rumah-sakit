@@ -127,7 +127,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/pasien" class="btn btn-warning">Kembali</a>
                             <button type="submit" class="btn btn-success d-inline">Simpan</button>
                         </form>
                     </div>
@@ -237,6 +236,7 @@
                         </table>
                     </div>
                 </div>
+                <a href="/pasien" class="btn btn-warning">Kembali</a>
             </div>
         </div>
     </section>

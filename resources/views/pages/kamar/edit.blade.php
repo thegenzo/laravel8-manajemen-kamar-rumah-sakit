@@ -80,6 +80,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Jumlah Kasur</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <input type="number" id="jumlah_kasur" class="form-control" name="jumlah_kasur" value="{{ $kamar->jumlah_kasur }}">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <a href="/kamar" class="btn btn-warning d-inline">Kembali</a>
                     <button type="submit" class="btn btn-success">Simpan</button>

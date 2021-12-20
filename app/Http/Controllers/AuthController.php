@@ -62,12 +62,11 @@ class AuthController extends Controller
             Session::flash('error', 'Email atau password salah');
             return redirect()->route('login');
         }
- 
     }
 
     public function logout()
     {
         Auth()->logout(); // menghapus session yang aktif
-        return redirect()->route('login');
+        return redirect('/');
     }
 }

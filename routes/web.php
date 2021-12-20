@@ -30,7 +30,7 @@ use App\Http\Controllers\AntrianAnakController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::view('/', 'pages.home');
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
@@ -38,9 +38,10 @@ Route::post('logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'ceklevel:admin,perawat']], function() {
 
     
-    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::resource('kamar', KamarController::class);
+    Route::get('/kamar/lihat-pasien/{id}', [KamarController::class, 'lihatPasien'])->name('lihat-pasien');
 
     Route::resource('admin', AdminController::class);
 
@@ -52,6 +53,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin,perawat']], function() {
 
     // ------------- PASIEN DEWASA ------------------- //
     Route::resource('pasien', PasienController::class);
+    Route::get('/laporan-pasien-masuk', [PasienController::class, 'laporanPasienMasuk']);
+    Route::get('/laporan-pasien-keluar', [PasienController::class, 'laporanPasienKeluar']);
 
     Route::get('/rekam-medis/{id}', [RekamMedisController::class, 'index'])->name('rekam-medis');
 
@@ -65,6 +68,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin,perawat']], function() {
 
     // ------------- PASIEN ANAK-ANAK ------------------- //
     Route::resource('pasien-anak', PasienAnakController::class);
+    Route::get('/laporan-pasien-masuk-anak', [PasienAnakController::class, 'laporanPasienMasukAnak']);
+    Route::get('/laporan-pasien-keluar-anak', [PasienAnakController::class, 'laporanPasienKeluarAnak']);
 
     Route::get('/rekam-medis-anak/{id}', [RekamMedisAnakController::class, 'index'])->name('rekam-medis-anak');
 

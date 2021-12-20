@@ -39,7 +39,9 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama Kamar</th>
-                            <th>Kelas</th>
+                            <th class="text-center">Kelas</th>
+                            <th class="text-center">Jumlah Kasur</th>
+                            <th class="text-center">Kasur Tersedia</th>
                             <th>Status</th>
                             @if (auth()->user()->level == 'admin')
                             <th class="text-center">Action</th>
@@ -51,24 +53,32 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $data->nama_kamar }}</td>
-                            <td>{{ $data->kelas }}</td>
-                            @if ($data->status == 'kosong')
+                            <td class="text-center">{{ $data->kelas }}</td>
+                            <td class="text-center">{{ $data->jumlah_kasur }}</td>
+                            <td class="text-center">
+                                {{ ($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count())) }}
+                            </td>
+                            @if ((($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()))) > 0)
                             <td>
-                                <span class="badge bg-success">Kosong</span>
+                                <span class="badge bg-success">Tersedia</span>
                             </td>
                             @else
                             <td>
-                                <span class="badge bg-danger">Terisi Oleh {{ \App\Models\Pasien::where('id_kamar', $data->id)->first()->nama_pasien ?? \App\Models\PasienAnak::where('id_kamar', $data->id)->first()->nama_pasien }}</span>
+                                <span class="badge bg-danger">Penuh</span>
                                 <br>
                             </td>
                             @endif
                             @if (auth()->user()->level == 'admin')
                             <td class="text-center">
+                                <a href="{{ route('lihat-pasien', $data->id) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Lihat Pasien">
+                                    <i class="bi bi-receipt"></i>
+                                </a>
                                 <a href="{{ route('kamar.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit Kamar">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -81,7 +91,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Data Kosong</td>
+                            <td colspan="7" class="text-center">Data Kosong</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -102,7 +112,9 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama Kamar</th>
-                            <th>Kelas</th>
+                            <th class="text-center">Kelas</th>
+                            <th class="text-center">Jumlah Kasur</th>
+                            <th class="text-center">Kasur Tersedia</th>
                             <th>Status</th>
                             @if (auth()->user()->level == 'admin')
                             <th class="text-center">Action</th>
@@ -114,24 +126,32 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $data->nama_kamar }}</td>
-                            <td>{{ $data->kelas }}</td>
-                            @if ($data->status == 'kosong')
+                            <td class="text-center">{{ $data->kelas }}</td>
+                            <td class="text-center">{{ $data->jumlah_kasur }}</td>
+                            <td class="text-center">
+                                {{ ($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count())) }}
+                            </td>
+                            @if ((($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()))) > 0)
                             <td>
-                                <span class="badge bg-success">Kosong</span>
+                                <span class="badge bg-success">Tersedia</span>
                             </td>
                             @else
                             <td>
-                                <span class="badge bg-danger">Terisi Oleh {{ \App\Models\Pasien::where('id_kamar', $data->id)->first()->nama_pasien ?? \App\Models\PasienAnak::where('id_kamar', $data->id)->first()->nama_pasien }}</span>
+                                <span class="badge bg-danger">Penuh</span>
                                 <br>
                             </td>
                             @endif
                             @if (auth()->user()->level == 'admin')
                             <td class="text-center">
+                                <a href="{{ route('lihat-pasien', $data->id) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Lihat Pasien">
+                                    <i class="bi bi-receipt"></i>
+                                </a>
                                 <a href="{{ route('kamar.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit Kamar">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -144,7 +164,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Data Kosong</td>
+                            <td colspan="7" class="text-center">Data Kosong</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -165,7 +185,9 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama Kamar</th>
-                            <th>Kelas</th>
+                            <th class="text-center">Kelas</th>
+                            <th class="text-center">Jumlah Kasur</th>
+                            <th class="text-center">Kasur Tersedia</th>
                             <th>Status</th>
                             @if (auth()->user()->level == 'admin')
                             <th class="text-center">Action</th>
@@ -177,24 +199,32 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $data->nama_kamar }}</td>
-                            <td>{{ $data->kelas }}</td>
-                            @if ($data->status == 'kosong')
+                            <td class="text-center">{{ $data->kelas }}</td>
+                            <td class="text-center">{{ $data->jumlah_kasur }}</td>
+                            <td class="text-center">
+                                {{ ($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count())) }}
+                            </td>
+                            @if ((($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()))) > 0)
                             <td>
-                                <span class="badge bg-success">Kosong</span>
+                                <span class="badge bg-success">Tersedia</span>
                             </td>
                             @else
                             <td>
-                                <span class="badge bg-danger">Terisi Oleh {{ \App\Models\Pasien::where('id_kamar', $data->id)->first()->nama_pasien ?? \App\Models\PasienAnak::where('id_kamar', $data->id)->first()->nama_pasien }}</span>
+                                <span class="badge bg-danger">Penuh</span>
                                 <br>
                             </td>
                             @endif
                             @if (auth()->user()->level == 'admin')
                             <td class="text-center">
+                                <a href="{{ route('lihat-pasien', $data->id) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Lihat Pasien">
+                                    <i class="bi bi-receipt"></i>
+                                </a>
                                 <a href="{{ route('kamar.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit Kamar">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -207,7 +237,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Data Kosong</td>
+                            <td colspan="7" class="text-center">Data Kosong</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -228,7 +258,9 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama Kamar</th>
-                            <th>Kelas</th>
+                            <th class="text-center">Kelas</th>
+                            <th class="text-center">Jumlah Kasur</th>
+                            <th class="text-center">Kasur Tersedia</th>
                             <th>Status</th>
                             @if (auth()->user()->level == 'admin')
                             <th class="text-center">Action</th>
@@ -240,24 +272,32 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $data->nama_kamar }}</td>
-                            <td>{{ $data->kelas }}</td>
-                            @if ($data->status == 'kosong')
+                            <td class="text-center">{{ $data->kelas }}</td>
+                            <td class="text-center">{{ $data->jumlah_kasur }}</td>
+                            <td class="text-center">
+                                {{ ($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count())) }}
+                            </td>
+                            @if ((($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()))) > 0)
                             <td>
-                                <span class="badge bg-success">Kosong</span>
+                                <span class="badge bg-success">Tersedia</span>
                             </td>
                             @else
                             <td>
-                                <span class="badge bg-danger">Terisi Oleh {{ \App\Models\Pasien::where('id_kamar', $data->id)->first()->nama_pasien ?? \App\Models\PasienAnak::where('id_kamar', $data->id)->first()->nama_pasien }}</span>
+                                <span class="badge bg-danger">Penuh</span>
                                 <br>
                             </td>
                             @endif
                             @if (auth()->user()->level == 'admin')
                             <td class="text-center">
+                                <a href="{{ route('lihat-pasien', $data->id) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Lihat Pasien">
+                                    <i class="bi bi-receipt"></i>
+                                </a>
                                 <a href="{{ route('kamar.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit Kamar">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -270,7 +310,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Data Kosong</td>
+                            <td colspan="7" class="text-center">Data Kosong</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -291,7 +331,9 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama Kamar</th>
-                            <th>Kelas</th>
+                            <th class="text-center">Kelas</th>
+                            <th class="text-center">Jumlah Kasur</th>
+                            <th class="text-center">Kasur Tersedia</th>
                             <th>Status</th>
                             @if (auth()->user()->level == 'admin')
                             <th class="text-center">Action</th>
@@ -303,24 +345,32 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $data->nama_kamar }}</td>
-                            <td>{{ $data->kelas }}</td>
-                            @if ($data->status == 'kosong')
+                            <td class="text-center">{{ $data->kelas }}</td>
+                            <td class="text-center">{{ $data->jumlah_kasur }}</td>
+                            <td class="text-center">
+                                {{ ($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count())) }}
+                            </td>
+                            @if ((($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()))) > 0)
                             <td>
-                                <span class="badge bg-success">Kosong</span>
+                                <span class="badge bg-success">Tersedia</span>
                             </td>
                             @else
                             <td>
-                                <span class="badge bg-danger">Terisi Oleh {{ \App\Models\Pasien::where('id_kamar', $data->id)->first()->nama_pasien ?? \App\Models\PasienAnak::where('id_kamar', $data->id)->first()->nama_pasien }}</span>
+                                <span class="badge bg-danger">Penuh</span>
                                 <br>
                             </td>
                             @endif
                             @if (auth()->user()->level == 'admin')
                             <td class="text-center">
+                                <a href="{{ route('lihat-pasien', $data->id) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Lihat Pasien">
+                                    <i class="bi bi-receipt"></i>
+                                </a>
                                 <a href="{{ route('kamar.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit Kamar">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('kamar.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -333,7 +383,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Data Kosong</td>
+                            <td colspan="7" class="text-center">Data Kosong</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -365,7 +415,7 @@
           event.preventDefault();
           swal({
               title: `Yakin Hapus Data?`,
-              text: "Data yang terhapus tidak dapat dikembalikan",
+              text: "Data yang terkait juga akan ikut terhapus",
               icon: "warning",
               buttons: true,
               dangerMode: true,

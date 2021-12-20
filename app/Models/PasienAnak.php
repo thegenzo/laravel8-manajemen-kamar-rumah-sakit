@@ -13,7 +13,7 @@ class PasienAnak extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['nomor_pasien', 'nama_pasien', 'umur', 'ttl', 'alamat', 'jenis_kelamin', 'status_inap', 'nama_kepala_keluarga', 'diagnosa_masuk', 'jenis_pasien', 'id_kamar', 'id_dokter', 'gedung'];
+    protected $fillable = ['nomor_pasien', 'nama_pasien', 'umur', 'ttl', 'alamat', 'jenis_kelamin', 'status_inap', 'nama_kepala_keluarga', 'sumber_informasi', 'keluhan_utama', 'riwayat_keluhan_utama', 'riwayat penyakit', 'riwayat_alergi', 'diagnosa_masuk', 'jenis_pasien', 'id_kamar', 'id_dokter', 'gedung'];
 
     public function rekammedis_anak()
     {

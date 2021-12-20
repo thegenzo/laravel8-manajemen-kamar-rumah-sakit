@@ -109,6 +109,7 @@
                                             <option value="Flamboyan" {{ $perawat->staf_gedung == 'Flamboyan' ? 'selected' : '' }}>Flamboyan</option>
                                             <option value="Kamboja" {{ $perawat->staf_gedung == 'Kamboja' ? 'selected' : '' }}>Kamboja</option>
                                             <option value="Bougenville" {{ $perawat->staf_gedung == 'Bougenville' ? 'selected' : '' }}>Bougenville</option>
+                                            <option value="Kebidanan" {{ $perawat->staf_gedung == 'Kebidanan' ? 'selected' : '' }}>Kebidanan</option>
                                         </select>
                                     </fieldset>
                                 </div>

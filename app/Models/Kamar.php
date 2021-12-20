@@ -13,7 +13,7 @@ class Kamar extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['nama_kamar', 'kelas', 'gedung', 'status'];
+    protected $fillable = ['nama_kamar', 'kelas', 'gedung', 'jumlah_kasur','status'];
 
     public function pasien()
     {

@@ -60,6 +60,7 @@ class DokterController extends Controller
         }
 
         $data = $request->all();
+        $data['status'] = 1;
         Dokter::create($data);
 
         Alert::success('Berhasil', 'Dokter berhasil ditambahkan');
@@ -135,12 +136,12 @@ class DokterController extends Controller
     public function destroy($id)
     {
         $dokter = Dokter::find($id);
-        if ($dokter->pasien()->count()) {
+        if ($dokter->pasien()->count() > 0) {
             Alert::error('Gagal', 'Dokter memiliki data terkait dengan pasien');
             return back();
         }
-        else if ($dokter->pasien_anak()->count()) {
-            Alert::error('Gagal', 'Dokter memiliki data terkait dengan pasien');
+        else if ($dokter->pasien_anak()->count() > 0) {
+            Alert::error('Gagal', 'Dokter memiliki data terkait dengan pasien anak');
             return back();
         }
         else {

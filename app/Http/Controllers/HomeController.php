@@ -14,20 +14,27 @@ class HomeController extends Controller
     public function index()
     {
         // gedung flamboyan
-        $flamKosong = Kamar::where('gedung', 'Flamboyan')->where('status', 'kosong')->count();
-        $flamTerisi = Kamar::where('gedung', 'Flamboyan')->where('status', 'terisi')->count();
+        $flamKosong = Kamar::where('gedung', 'Flamboyan')->where('jumlah_kasur', '>', '0')->count();
+        $flamTerisi = Kamar::where('gedung', 'Flamboyan')->where('jumlah_kasur', '<', '1')->count();
 
         // gedung bougenville
-        $bougenKosong = Kamar::where('gedung', 'Bougenville')->where('status', 'kosong')->count();
-        $bougenTerisi = Kamar::where('gedung', 'Bougenville')->where('status', 'terisi')->count();
+        $bougenKosong = Kamar::where('gedung', 'Bougenville')->where('jumlah_kasur', '>', '0')->count();
+        $bougenTerisi = Kamar::where('gedung', 'Bougenville')->where('jumlah_kasur', '<', '1')->count();
+
 
         // gedung kamboja
-        $kambKosong = Kamar::where('gedung', 'Kamboja')->where('status', 'kosong')->count();
-        $kambTerisi = Kamar::where('gedung', 'Kamboja')->where('status', 'terisi')->count();
+        $kambKosong = Kamar::where('gedung', 'Kamboja')->where('jumlah_kasur', '>', '0')->count();
+        $kambTerisi = Kamar::where('gedung', 'Kamboja')->where('jumlah_kasur', '<', '1')->count();
+
 
         // gedung melati
-        $melKosong = Kamar::where('gedung', 'Melati')->where('status', 'kosong')->count();
-        $melTerisi = Kamar::where('gedung', 'Melati')->where('status', 'terisi')->count();
+        $melKosong = Kamar::where('gedung', 'Melati')->where('jumlah_kasur', '>', '0')->count();
+        $melTerisi = Kamar::where('gedung', 'Melati')->where('jumlah_kasur', '<', '1')->count();
+
+        // gedung kebidanan
+        $kebidKosong = Kamar::where('gedung', 'Kebidanan')->where('jumlah_kasur', '>', '0')->count();
+        $kebidTerisi = Kamar::where('gedung', 'Kebidanan')->where('jumlah_kasur', '<', '1')->count();
+
 
         $pasienAktif = Pasien::where('status_inap', 1)->get();
         $pasienAktifAnak = PasienAnak::where('status_inap', 1)->get();
@@ -43,7 +50,7 @@ class HomeController extends Controller
         $rujukanAnak = DiagnosaAnak::where('status_pasien', 'Rujukan')->count();
         $meninggalAnak = DiagnosaAnak::where('status_pasien', 'Meninggal')->count();
 
-        return view('pages.home', compact('flamKosong', 'flamTerisi', 'bougenKosong', 'bougenTerisi', 'kambKosong', 'kambTerisi', 'melKosong', 'melTerisi', 'pasienAktif',
+        return view('pages.dashboard', compact('flamKosong', 'flamTerisi', 'bougenKosong', 'bougenTerisi', 'kambKosong', 'kambTerisi', 'melKosong', 'melTerisi', 'kebidKosong', 'kebidTerisi', 'pasienAktif',
                                             'pasienAktifAnak', 'sembuh', 'rujukan', 'meninggal', 'sembuhAnak', 'rujukanAnak', 'meninggalAnak'));
     }
 }

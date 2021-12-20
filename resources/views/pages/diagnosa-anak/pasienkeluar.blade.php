@@ -26,7 +26,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                
+                <a href="/laporan-pasien-keluar-anak" target="_blank" class="btn btn-danger me-1 mb-2">Cetak</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

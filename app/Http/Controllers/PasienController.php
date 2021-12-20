@@ -7,8 +7,10 @@ use App\Models\Kamar;
 use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\Perawat;
+use App\Models\Diagnosa;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 use Validator;
 
@@ -42,10 +44,10 @@ class PasienController extends Controller
      */
     public function create()
     {
-        $dokter = Dokter::all();
-        $kamar = Kamar::where('status', 'kosong')->orderBy('gedung', 'ASC')->get();
+        $dokter = Dokter::where('status', 1)->get();
+        $kamar = Kamar::where('jumlah_kasur', '>', 0)->orderBy('gedung', 'ASC')->get();
 
-        $kamarTersedia = Kamar::where('status', 'kosong')->count();
+        $kamarTersedia = Kamar::where('jumlah_kasur', '>', 0)->count();
 
         // generate angka acak sebanyak 8 digit untuk nomor pasien
         $nomor_pasien = mt_rand(10000000, 99999999);
@@ -62,16 +64,19 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nama_pasien'          => 'required',
-            'umur'                 => 'required|numeric',
-            'ttl'                  => 'required',
-            'alamat'               => 'required',
-            'jenis_kelamin'        => 'required',
-            'nama_kepala_keluarga' => 'required',
-            'diagnosa_masuk'       => 'required',
-            'jenis_pasien'         => 'required',
-            'id_kamar'             => 'required',
-            'id_dokter'            => 'required',
+            'nama_pasien'           => 'required',
+            'umur'                  => 'required|numeric',
+            'ttl'                   => 'required',
+            'alamat'                => 'required',
+            'jenis_kelamin'         => 'required',
+            'nama_kepala_keluarga'  => 'required',
+            'sumber_informasi'      => 'required',
+            'keluhan_utama'         => 'required',
+            'riwayat_keluhan_utama' => 'required',
+            'diagnosa_masuk'        => 'required',
+            'jenis_pasien'          => 'required',
+            'id_kamar'              => 'required',
+            'id_dokter'             => 'required',
 
         ];
 
@@ -83,6 +88,9 @@ class PasienController extends Controller
             'alamat.required'                    => 'Alamat wajib diisi',
             'jenis_kelamin.required'             => 'Jenis kelamin wajib diisi',
             'nama_kepala_keluarga.required'      => 'Nama kepala keluarga wajib diisi',
+            'sumber_informasi.required'          => 'Sumber Informasi wajib diisi',
+            'keluhan_utama.required'             => 'Keluhan utama wajib diisi',
+            'riwayat_keluhan_utama.required'     => 'Riwayat keluhan utama wajib diisi',
             'diagnosa_masuk.required'            => 'Diagnosa masuk wajib diisi',
             'jenis_pasien.required'              => 'Jenis pasien wajib diisi',
             'id_kamar.required'                  => 'Kamar wajib diisi',
@@ -102,8 +110,6 @@ class PasienController extends Controller
         $data['gedung'] = Kamar::where('id', $request->id_kamar)->first()->gedung;
 
         Pasien::create($data);
-
-        Kamar::where('id', $request->id_kamar)->update(['status' => 'terisi']); // mengupdate data kamar kalau kamar yang terpilih sudah terisi
 
         Alert::success('Berhasil', 'Pasien berhasil ditambahkan');
 
@@ -132,10 +138,12 @@ class PasienController extends Controller
     public function edit($id)
     {
         $pasien = Pasien::find($id);
-        $dokter = Dokter::all();
-        $kamar = Kamar::where('status', 'kosong')->orderBy('gedung', 'ASC')->get();
+        $dokter = Dokter::where('status', 1)->get();
+        $kamar = Kamar::where('jumlah_kasur', '>', 0)->orderBy('gedung', 'ASC')->get();
 
-        return view('pages.pasien.edit', compact('pasien', 'dokter', 'kamar'));
+        $kamarTersedia = Kamar::where('jumlah_kasur', '>', 0)->count();
+
+        return view('pages.pasien.edit', compact('pasien', 'dokter', 'kamar', 'kamarTersedia'));
     }
 
     /**
@@ -148,16 +156,19 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'nama_pasien'          => 'required',
-            'umur'                 => 'required|numeric',
-            'ttl'                  => 'required',
-            'alamat'               => 'required',
-            'jenis_kelamin'        => 'required',
-            'nama_kepala_keluarga' => 'required',
-            'diagnosa_masuk'       => 'required',
-            'jenis_pasien'         => 'required',
-            'id_kamar'             => 'required',
-            'id_dokter'            => 'required',
+            'nama_pasien'           => 'required',
+            'umur'                  => 'required|numeric',
+            'ttl'                   => 'required',
+            'alamat'                => 'required',
+            'jenis_kelamin'         => 'required',
+            'nama_kepala_keluarga'  => 'required',
+            'sumber_informasi'      => 'required',
+            'keluhan_utama'         => 'required',
+            'riwayat_keluhan_utama' => 'required',
+            'diagnosa_masuk'        => 'required',
+            'jenis_pasien'          => 'required',
+            'id_kamar'              => 'required',
+            'id_dokter'             => 'required',
 
         ];
 
@@ -169,6 +180,9 @@ class PasienController extends Controller
             'alamat.required'                    => 'Alamat wajib diisi',
             'jenis_kelamin.required'             => 'Jenis kelamin wajib diisi',
             'nama_kepala_keluarga.required'      => 'Nama kepala keluarga wajib diisi',
+            'sumber_informasi.required'          => 'Sumber Informasi wajib diisi',
+            'keluhan_utama.required'             => 'Keluhan utama wajib diisi',
+            'riwayat_keluhan_utama.required'     => 'Rijayt keluhan utama wajib diisi',
             'diagnosa_masuk.required'            => 'Diagnosa masuk wajib diisi',
             'jenis_pasien.required'              => 'Jenis pasien wajib diisi',
             'id_kamar.required'                  => 'Kamar wajib diisi',
@@ -183,9 +197,10 @@ class PasienController extends Controller
 
         $pasien = Pasien::find($id);
         $data = $request->all();
-        $data['status_inap'] = 1; // pasien masuk
+        $data['status_inap'] = '1'; // pasien masuk
         $data['id_dokter'] = $request->id_dokter;
         $data['id_kamar'] = $request->id_kamar;
+
         $data['gedung'] = Kamar::where('id', $request->id_kamar)->first()->gedung;
         $pasien->update($data);
 
@@ -204,6 +219,7 @@ class PasienController extends Controller
     {
         $pasien = Pasien::find($id);
 
+
         $pasien->delete();
 
         Alert::success('Berhasil', 'Pasien berhasil dihapus');
@@ -219,5 +235,21 @@ class PasienController extends Controller
         $diagnosa = Diagnosa::all();
 
         return view('pages.pasien.pasienkeluar', compact('diagnosa'));
+    }
+
+    public function laporanPasienMasuk()
+    {
+        $pasien = Pasien::where('status_inap', '1')->get();
+        $waktu = Carbon::now();
+
+        return view('pages.pasien.laporan-pasien-masuk', compact('pasien', 'waktu'));
+    }
+
+    public function laporanPasienKeluar()
+    {
+        $diagnosa = Diagnosa::all();
+        $waktu = Carbon::now();
+
+        return view('pages.pasien.laporan-pasien-keluar', compact('diagnosa', 'waktu'));
     }
 }

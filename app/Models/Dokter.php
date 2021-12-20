@@ -13,7 +13,7 @@ class Dokter extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['nama_dokter', 'spesialis', 'jadwal'];
+    protected $fillable = ['nama_dokter', 'spesialis', 'jadwal', 'status'];
 
     public function pasien()
     {

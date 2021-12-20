@@ -20,10 +20,15 @@ class CreatePasienAnaksTable extends Migration
             $table->integer('umur');
             $table->string('ttl');
             $table->text('alamat');
-            $table->string('jenis_kelamin');
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->enum('jenis_pasien', ['JKN', 'Umum']);
             $table->enum('status_inap', [1, 0]);
             $table->string('nama_kepala_keluarga');
+            $table->string('sumber_informasi');
+            $table->text('keluhan_utama');
+            $table->text('riwayat_keluhan_utama');
+            $table->text('riwayat_penyakit')->nullable();
+            $table->text('riwayat_alergi')->nullable();
             $table->string('diagnosa_masuk');
 
             // relasi kamar dan pasien

@@ -34,8 +34,7 @@
                             <p>2021 &copy; Universitas Dayanu Ikhsanuddin</p>
                         </div>
                         <div class="float-end">
-                            <p>Mazer Admin Dashboard Template <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                    href="http://ahmadsaugi.com">A. Saugi</a></p>
+                            
                         </div>
                     </div>
                 </div>

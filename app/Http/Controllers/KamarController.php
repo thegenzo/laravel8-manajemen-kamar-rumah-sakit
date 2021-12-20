@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kamar;
 use App\Models\Pasien;
+use App\Models\PasienAnak;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -51,12 +52,15 @@ class KamarController extends Controller
             'nama_kamar'        => 'required',
             'gedung'            => 'required',
             'kelas'             => 'required',
+            'jumlah_kasur'      => 'required|numeric',
         ];
 
         $messages = [
-            'nama_kamar.required'      => 'Nama kamar wajib diisi',
+            'nama_kamar.required'       => 'Nama kamar wajib diisi',
             'gedung.required'           => 'Gedung wajib diisi',
             'kelas.required'            => 'Kelas wajib diisi',
+            'jumlah_kasur.required'     => 'Jumlah Kasur wajib diisi',
+            'jumlah_kasur.numeric'      => 'Jumlah Kasur harus berupa angka',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -112,12 +116,15 @@ class KamarController extends Controller
             'nama_kamar'        => 'required',
             'gedung'            => 'required',
             'kelas'             => 'required',
+            'jumlah_kasur'      => 'required|numeric',
         ];
 
         $messages = [
-            'nama_kamar.required'      => 'Nama kamar wajib diisi',
+            'nama_kamar.required'       => 'Nama kamar wajib diisi',
             'gedung.required'           => 'Gedung wajib diisi',
             'kelas.required'            => 'Kelas wajib diisi',
+            'jumlah_kasur.required'     => 'Jumlah Kasur wajib diisi',
+            'jumlah_kasur.numeric'      => 'Jumlah Kasur harus berupa angka',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -160,5 +167,14 @@ class KamarController extends Controller
 
             return redirect('/kamar');
         } 
+    }
+
+    public function lihatPasien($id)
+    {
+        $kamar = Kamar::find($id);
+        $pasien = Pasien::where('id_kamar', $id)->where('status_inap', '1')->get();
+        $pasienAnak = PasienAnak::where('id_kamar', $id)->where('status_inap', '1')->get();
+
+        return view('pages.kamar.detail', compact('kamar', 'pasien', 'pasienAnak'));
     }
 }

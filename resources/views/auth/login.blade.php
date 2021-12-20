@@ -19,10 +19,10 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div>
-                <a href="index.html"><img src="{{ asset('assets/images/logo-puskesmas.png') }}" alt="Logo" style="width: 20%; height: 20%"></a>
+                <a href="/"><img src="{{ asset('assets/images/logo-puskesmas.png') }}" alt="Logo" style="width: 20%; height: 20%"></a>
             </div>
-            <h1 class="auth-title">Log in.</h1>
-            <p class="auth-subtitle mb-5">Log in dengan akun yang sudah dibuatkan oleh Admin/UGD</p>
+            <h1 class="auth-title">Login.</h1>
+            <p class="auth-subtitle mb-5">Login dengan akun yang sudah dibuatkan oleh Admin</p>
 
             <form action="/login" method="POST">
                 @csrf
@@ -39,7 +39,7 @@
                         <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">Log in</button>
+                <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">Login</button>
             </form>
             {{-- <div class="text-center mt-5 text-lg fs-4">
                 <p class="text-gray-600">Don't have an account? <a href="auth-register.html" class="font-bold">Sign

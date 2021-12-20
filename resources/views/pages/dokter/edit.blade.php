@@ -86,6 +86,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Status</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <div class="form-group">
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="1" {{ $dokter->status == '1' ? 'selected' : '' }}>Aktif</option>
+                                            <option value="0" {{ $dokter->status == '0' ? 'selected' : '' }}>Nonaktif</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <a href="/dokter" class="btn btn-warning d-inline">Kembali</a>
                     <button type="submit" class="btn btn-success">Simpan</button>

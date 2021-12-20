@@ -1,8 +1,10 @@
 <div class="header-top">
     <div class="container">
         <div>
-            <a href=""><img src="{{ asset('assets/images/logo-puskesmas.png') }}" alt="Logo" style="width: 10%; height: 10%;"></a>
+            <a href=""><img src="{{ asset('assets/images/logo-kota-baubau.png') }}" alt="Logo" style="width: 8%; height: 8%; margin-left: 50px;"></a>
+            <span class="d-inline"><h5>RSUD Kota Baubau</h5></span>
         </div>
+       
         <!-- Burger button responsive -->
         <a href="#" class="burger-btn d-block d-xl-none">
             <i class="bi bi-justify fs-3"></i>
@@ -15,7 +17,7 @@
                     <div class="user-menu d-flex">
                         <div class="user-name text-end me-3">
                             <h6 class="mb-0 text-gray-600">{{ auth()->user()->name }}</h6>
-                            <p class="mb-0 text-sm text-gray-600">Admin/UGD</p>
+                            <p class="mb-0 text-sm text-gray-600">Admin</p>
                         </div>
                         <div class="user-img d-flex align-items-center">
                             <div class="avatar avatar-md">

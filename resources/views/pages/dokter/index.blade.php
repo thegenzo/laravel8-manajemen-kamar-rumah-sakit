@@ -38,6 +38,7 @@
                             <th>Nama Dokter</th>
                             <th>Spesialis</th>
                             <th>Jadwal</th>
+                            <th class="text-center">Status</th>
                             @if (auth()->user()->level == 'admin')
                             <th class="text-center">Action</th>
                             @endif
@@ -50,14 +51,18 @@
                             <td>{{ $data->nama_dokter }}</td>
                             <td>{{ $data->spesialis }}</td>
                             <td>{{ $data->jadwal }}</td>
+                            @if($data->status == 1)
+                            <td class="text-center"><span class="badge bg-success">Aktif</span></td>
+                            @else
+                            <td class="text-center"><span class="badge bg-danger">Nonaktif</span></td>
+                            @endif
                             @if (auth()->user()->level == 'admin')
                             <td class="text-center">
                                 <a href="{{ route('dokter.edit', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit Dokter">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                @if ($data->pasien->count() || $data->pasien_anak->count())
-                                <form action="{{ route('dokter.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('dokter.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -65,7 +70,6 @@
                                         <i class="bi bi-trash-fill swal-confirm"></i>
                                     </button>
                                 </form>
-                                @endif
                             </td>
                             @endif
                         </tr>
@@ -84,6 +88,7 @@
 @endsection
 
 @push('addon-script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script type="text/javascript">
     // Simple Datatable
@@ -98,7 +103,7 @@
         event.preventDefault();
         swal({
             title: `Yakin Hapus Data?`,
-            text: "Menghapus data pasien ini akan menghapus data diagnosa dan rekam medis yang terkait",
+            text: "Data yang terhapus tidak bisa dikembalikan",
             icon: "warning",
             buttons: true,
             dangerMode: true,

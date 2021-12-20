@@ -98,13 +98,18 @@
                                     <label class="col-form-label">Jenis Kelamin</label>
                                 </div>
                                 <div class="col-lg-10 col-9">
-                                    <fieldset class="form-group">
-                                        <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
-                                            <option value="" selected hidden>Pilih JK</option>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
-                                        </select>
-                                    </fieldset>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki">
+                                        <label class="form-check-label" for="laki-laki">
+                                            Laki-laki
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan">
+                                        <label class="form-check-label" for="perempuan">
+                                            Perempuan
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,6 +123,51 @@
                                 </div>
                             </div>
                         </div>
+                        <hr class="my-4">
+                        <div class="col-md-12">
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Sumber Informasi dan Hubungan dengan Pasien</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <input type="text" id="sumber_informasi" class="form-control" name="sumber_informasi" placeholder="Masukkan Sumber Informasi">
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Keluhan Utama</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <textarea class="form-control" name="keluhan_utama" id="keluhan_utama" cols="30" rows="5" placeholder="Masukkan Keluhan Utama"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Riwayat Keluhan Utama</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <textarea class="form-control" name="riwayat_keluhan_utama" id="riwayat_keluhan_utama" cols="30" rows="5" placeholder="Masukkan Riwayat Keluhan Utama"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Riwayat Penyakit</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <textarea class="form-control" name="riwayat_penyakit" id="riwayat_penyakit" cols="30" rows="5" placeholder="Masukkan Riwayat Penyakit"></textarea>
+                                    <small class="text-muted">Jika tidak ada, boleh dikosongkan</small>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center">
+                                <div class="col-lg-2 col-3">
+                                    <label class="col-form-label">Riwayat Alergi</label>
+                                </div>
+                                <div class="col-lg-10 col-9">
+                                    <textarea class="form-control" name="riwayat_alergi" id="riwayat_alergi" cols="30" rows="5" placeholder="Masukkan Riwayat Alergi"></textarea>
+                                    <small class="text-muted">Jika tidak ada, boleh dikosongkan</small>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group row align-items-center">
                                 <div class="col-lg-2 col-3">
@@ -128,6 +178,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr class="my-4">
                         <div class="col-md-12">
                             <div class="form-group row align-items-center">
                                 <div class="col-lg-2 col-3">

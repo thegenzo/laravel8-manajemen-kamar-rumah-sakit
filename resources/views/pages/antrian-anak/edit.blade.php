@@ -118,8 +118,8 @@
                                 <div class="col-lg-10 col-9">
                                     <fieldset class="form-group">
                                         <select class="form-select" readonly="readonly" tabindex="-1" aria-disabled="true" id="jenis_kelamin" name="jenis_kelamin">
-                                            <option value="Pria" {{ $antrian->jk == 'Pria' ? 'selected' : '' }}>Pria</option>
-                                            <option value="Wanita" {{ $antrian->jk == 'Wanita' ? 'selected' : '' }}>Wanita</option>
+                                            <option value="L" {{ $antrian->jk == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                                            <option value="P" {{ $antrian->jk == 'P' ? 'selected' : '' }}>Perempuan</option>
                                         </select>
                                     </fieldset>
                                 </div>

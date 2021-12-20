@@ -54,7 +54,7 @@
                                     data-bs-placement="bottom" title="Kirim Pasien ke Kamar Inap">
                                     <i class="bi bi-journal-medical"></i>
                                 </a>
-                                <form action="{{ route('antrian.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm" onclick="return confirm('Apa yakin ingin menghapus data ini? Data yang terkait juga akan ikut terhapus')".>
+                                <form action="{{ route('antrian.destroy', $data->id) }}" method="POST" class="d-inline swal-confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger swal-confirm" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
@@ -79,6 +79,7 @@
 @endsection
 
 @push('addon-script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script type="text/javascript">
     // Simple Datatable

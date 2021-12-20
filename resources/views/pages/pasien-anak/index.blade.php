@@ -32,6 +32,7 @@
             <div class="card-header">
                 @if (auth()->user()->level == 'admin')
                 <a href="{{ route('pasien-anak.create') }}" class="btn btn-primary float-right mb-2">Tambah Pasien</a>
+                <a href="/laporan-pasien-masuk-anak" target="_blank" class="btn btn-danger me-1 mb-2">Cetak</a>
                 @endif
             </div>
             <div class="card-body">
@@ -61,7 +62,7 @@
                             <td>{{ $data->kamar->nama_kamar }}</td>
                             <td>{{ $data->dokter->nama_dokter }}</td>
                             <td class="text-center">
-                                <a href="{{ route('pasien-anak.show', $data->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
+                                <a href="{{ route('pasien-anak.show', $data->id) }}" class="btn btn-sm btn-success" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Lihat Data Pasien">
                                     <i class="bi bi-eye"></i>
                                 </a>
@@ -73,6 +74,19 @@
                                     data-bs-placement="bottom" title="Diagnosa">
                                     <i class="bi bi-card-checklist"></i>
                                 </a>
+                                <br>
+                                <a href="{{ route('pasien-anak.edit', $data->id) }}" class="btn btn-sm btn-info mt-1" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Edit Data Pasien">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <form action="{{ route('pasien-anak.destroy', $data->id) }}" method="post" class="d-inline swal-confirm">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger swal-confirm mt-1" type="submit" data-id="{{ $data->id }}" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="Hapus Pasien">
+                                        <i class="bi bi-trash-fill swal-confirm"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @empty

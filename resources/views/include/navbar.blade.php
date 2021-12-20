@@ -2,7 +2,7 @@
     <div class="container">
         <ul>
             <li class="menu-item ">
-                <a href="/" class='menu-link'>
+                <a href="/dashboard" class='menu-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>

@@ -18,6 +18,7 @@ class CreateDoktersTable extends Migration
             $table->string('nama_dokter');
             $table->string('spesialis');
             $table->string('jadwal');
+            $table->enum('status', ['1', '0']);
             $table->timestamps();
         });
     }

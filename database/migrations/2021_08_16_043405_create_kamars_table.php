@@ -18,6 +18,7 @@ class CreateKamarsTable extends Migration
             $table->string('nama_kamar');
             $table->string('kelas');
             $table->string('gedung');
+            $table->integer('jumlah_kamar')->nullable();
             $table->enum('status', ['kosong', 'terisi'])->nullable();
             $table->timestamps();
         });

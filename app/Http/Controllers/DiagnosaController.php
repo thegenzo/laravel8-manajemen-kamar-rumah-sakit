@@ -60,10 +60,6 @@ class DiagnosaController extends Controller
         $pasien->status_inap = '0'; // mengubah status pasien menjadi pasien keluar
         $pasien->save();
 
-        $kamar = Kamar::find($pasien->id_kamar);
-        $kamar->status = 'kosong';
-        $kamar->save();
-
         $diagnosa = new Diagnosa();
         $diagnosa->id_pasien = $id;
         $diagnosa->diagnosa_akhir = $request->diagnosa_akhir;

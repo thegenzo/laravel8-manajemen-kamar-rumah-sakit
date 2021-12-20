@@ -101,7 +101,48 @@
                             </div>
                         </div>
                     </div>
+                    <hr class="py-4">
                     <div class="col-md-12">
+                        <div class="form-group row align-items-center">
+                            <div class="col-lg-2 col-3">
+                                <label class="col-form-label">Sumber Informasi dan Hubungan dengan Pasien</label>
+                            </div>
+                            <div class="col-lg-10 col-9">
+                                <input type="text" id="sumber_informasi" class="form-control" value="{{ $pasien->sumber_informasi }}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <div class="col-lg-2 col-3">
+                                <label class="col-form-label">Keluhan Utama</label>
+                            </div>
+                            <div class="col-lg-10 col-9">
+                                <input type="text" id="keluhan_utama" class="form-control" value="{{ $pasien->keluhan_utama }}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <div class="col-lg-2 col-3">
+                                <label class="col-form-label">Riwayat Keluhan Utama</label>
+                            </div>
+                            <div class="col-lg-10 col-9">
+                                <input type="text" id="riwayat_keluhan_utama" class="form-control" value="{{ $pasien->riwayat_keluhan_utama }}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <div class="col-lg-2 col-3">
+                                <label class="col-form-label">Riwayat Penyakit</label>
+                            </div>
+                            <div class="col-lg-10 col-9">
+                                <input type="text" id="riwayat_penyakit" class="form-control" value="{{ $pasien->riwayat_penyakit }}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <div class="col-lg-2 col-3">
+                                <label class="col-form-label">Riwayat Alergi</label>
+                            </div>
+                            <div class="col-lg-10 col-9">
+                                <input type="text" id="riwayat_alergi" class="form-control" value="{{ $pasien->riwayat_alergi }}" disabled>
+                            </div>
+                        </div>
                         <div class="form-group row align-items-center">
                             <div class="col-lg-2 col-3">
                                 <label class="col-form-label">Diagnosa Masuk</label>
@@ -111,6 +152,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr class="py-4">
                     <div class="col-md-12">
                         <div class="form-group row align-items-center">
                             <div class="col-lg-2 col-3">

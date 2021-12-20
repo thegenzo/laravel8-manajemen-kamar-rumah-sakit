@@ -101,8 +101,8 @@
                                     <fieldset class="form-group">
                                         <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
                                             <option value="" selected hidden>Pilih JK</option>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
+                                            <option value="L">Laki-laki</option>
+                                            <option value="P">Perempuan</option>
                                         </select>
                                     </fieldset>
                                 </div>
