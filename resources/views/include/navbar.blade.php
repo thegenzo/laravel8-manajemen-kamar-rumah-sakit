@@ -18,7 +18,7 @@
                     <div class="submenu-group-wrapper">
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="/admin" class='submenu-link'>Admin/UGD</a>
+                                <a href="/admin" class='submenu-link'>Admin</a>
                             </li>        
                             <li class="submenu-item">
                                 <a href="/perawat" class='submenu-link'>Perawat</a>                    

@@ -15,25 +15,25 @@ class HomeController extends Controller
     {
         // gedung flamboyan
         $flamKosong = Kamar::where('gedung', 'Flamboyan')->where('jumlah_kasur', '>', '0')->count();
-        $flamTerisi = Kamar::where('gedung', 'Flamboyan')->where('jumlah_kasur', '<', '1')->count();
+        $flamTerisi = $flamKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Flamboyan')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Flamboyan')->count());
 
         // gedung bougenville
         $bougenKosong = Kamar::where('gedung', 'Bougenville')->where('jumlah_kasur', '>', '0')->count();
-        $bougenTerisi = Kamar::where('gedung', 'Bougenville')->where('jumlah_kasur', '<', '1')->count();
+        $bougenTerisi = $bougenKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Bougenville')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Bougenville')->count());
 
 
         // gedung kamboja
         $kambKosong = Kamar::where('gedung', 'Kamboja')->where('jumlah_kasur', '>', '0')->count();
-        $kambTerisi = Kamar::where('gedung', 'Kamboja')->where('jumlah_kasur', '<', '1')->count();
+        $kambTerisi = $kambKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Kamboja')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Kamboja')->count());
 
 
         // gedung melati
         $melKosong = Kamar::where('gedung', 'Melati')->where('jumlah_kasur', '>', '0')->count();
-        $melTerisi = Kamar::where('gedung', 'Melati')->where('jumlah_kasur', '<', '1')->count();
+        $melTerisi = $melKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Melati')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Melati')->count());
 
         // gedung kebidanan
         $kebidKosong = Kamar::where('gedung', 'Kebidanan')->where('jumlah_kasur', '>', '0')->count();
-        $kebidTerisi = Kamar::where('gedung', 'Kebidanan')->where('jumlah_kasur', '<', '1')->count();
+        $kebidTerisi = $kebidKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Kebidanan')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Kebidanan')->count());
 
 
         $pasienAktif = Pasien::where('status_inap', 1)->get();

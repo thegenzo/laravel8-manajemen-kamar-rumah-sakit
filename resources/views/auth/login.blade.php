@@ -21,7 +21,7 @@
             <div>
                 <a href="/"><img src="{{ asset('assets/images/logo-puskesmas.png') }}" alt="Logo" style="width: 20%; height: 20%"></a>
             </div>
-            <h1 class="auth-title">Login.</h1>
+            <h1 class="auth-title">Login</h1>
             <p class="auth-subtitle mb-5">Login dengan akun yang sudah dibuatkan oleh Admin</p>
 
             <form action="/login" method="POST">
