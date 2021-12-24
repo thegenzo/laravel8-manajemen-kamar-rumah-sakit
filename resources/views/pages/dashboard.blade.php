@@ -5,7 +5,7 @@
 @push('addon-style')
 {{-- <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css"> --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" media="screen">
-<link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+
 @endpush
 
 @section('content')
@@ -224,9 +224,7 @@
 @endsection
 
 @push('addon-script')
-<script src="assets/vendors/fontawesome/all.min.js"></script>
-{{-- <script src="assets/vendors/simple-datatables/simple-datatables.js"></script> --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">

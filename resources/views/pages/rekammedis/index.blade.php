@@ -79,6 +79,40 @@
                             <div class="col-md-12">
                                 <div class="form-group row align-items-center">
                                     <div class="col-lg-2 col-3">
+                                        <label class="col-form-label">Keluhan Utama</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="keluhan_utama" class="form-control" value="{{ $pasien->keluhan_utama }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label">Riwayat Keluhan Utama</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="riwayat_keluhan_utama" class="form-control" value="{{ $pasien->riwayat_keluhan_utama }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label">Riwayat Penyakit</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="riwayat_penyakit" class="form-control" value="{{ $pasien->riwayat_penyakit }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label">Riwayat Alergi</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="riwayat_alergi" class="form-control" value="{{ $pasien->riwayat_alergi }}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
                                         <label class="col-form-label">Diagnosa Masuk</label>
                                     </div>
                                     <div class="col-lg-10 col-9">
@@ -108,10 +142,24 @@
                         <form action="/rekam-medis/{{ $pasien->id }}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="squareText">Tensi Darah</label>
+                                        <label for="squareText">Tensi Darah (mmHg)</label>
                                         <input type="text" id="tensi_darah" class="form-control" name="tensi_darah" placeholder="Masukkan Tensi Darah">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="squareText">Pernapasan (KPM)</label>
+                                        <input type="number" id="pernapasan" class="form-control" name="pernapasan" placeholder="Masukkan Pernapasan">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="squareText">Suhu Tubuh (°C)</label>
+                                        <input type="number" id="suhu_tubuh" class="form-control" name="suhu_tubuh" placeholder="Masukkan Suhu Tubuh">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="squareText">Denyut nadi (BPM)</label>
+                                        <input type="number" id="nadi" class="form-control" name="nadi" placeholder="Masukkan Nadi">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -213,7 +261,10 @@
                                 <tr>
                                     <th class="text-center">No</th>
                                     <th>Tanggal Periksa</th>
-                                    <th>Tensi Darah</th>
+                                    <th>Tensi Darah (mmHg)</th>
+                                    <th>Suhu Tubuh (°C)</th>
+                                    <th>Pernapasan (KPM)</th>
+                                    <th>Denyut Nadi (BPM)</th>
                                     <th>Anamnesis</th>
                                     <th>Terapi</th>
                                 </tr>
@@ -224,19 +275,22 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($data->created_at)->locale('id')->isoFormat('LL') }}</td>
                                     <td>{{ $data->tensi_darah }}</td>
+                                    <td>{{ $data->suhu_tubuh }}</td>
+                                    <td>{{ $data->pernapasan }}</td>
+                                    <td>{{ $data->nadi }}</td>
                                     <td>{{ $data->anamnesis }}</td>
                                     <td>{{ $data->terapi }}</td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Data Kosong</td>
+                                    <td colspan="8" class="text-center">Data Kosong</td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <a href="/pasien" class="btn btn-warning">Kembali</a>
+                <a href="/pasien-keluar" class="btn btn-warning">Kembali</a>
             </div>
         </div>
     </section>

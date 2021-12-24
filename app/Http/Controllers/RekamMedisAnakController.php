@@ -47,12 +47,18 @@ class RekamMedisAnakController extends Controller
     {
         $rules = [
             'tensi_darah'          => 'required',
+            'suhu_tubuh'           => 'required',
+            'pernapasan'           => 'required',
+            'nadi'                 => 'required',
             'anamnesis'            => 'required',
             'terapi'               => 'required',
         ];
 
         $messages = [
             'tensi_darah.required'         => 'Tensi darah wajib diisi',
+            'suhu_tubuh.required'          => 'Suhu tubuh wajib diisi',
+            'pernapasan.required'          => 'Pernapasan wajib diisi',
+            'nadi.required'                => 'Nadi wajib diisi',
             'anamnesis.required'           => 'Anamnesis wajib diisi',
             'terapi.required'              => 'Terapi wajib diisi',
         ];

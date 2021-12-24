@@ -13,7 +13,7 @@ class RekamMedis extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id_pasien', 'tensi_darah', 'anamnesis', 'terapi'];
+    protected $fillable = ['id_pasien', 'tensi_darah', 'suhu_tubuh', 'pernapasan', 'nadi', 'anamnesis', 'terapi'];
 
     public function pasien()
     {

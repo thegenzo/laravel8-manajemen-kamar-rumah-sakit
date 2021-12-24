@@ -56,9 +56,9 @@
                             <td class="text-center">{{ $data->kelas }}</td>
                             <td class="text-center">{{ $data->jumlah_kasur }}</td>
                             <td class="text-center">
-                                {{ ($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count())) }}
+                                {{ $data->jumlah_kasur - (\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count() + \App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()) }}
                             </td>
-                            @if ((($data->jumlah_kasur) - ((\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count()) + (\App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()))) > 0)
+                            @if ($data->jumlah_kasur - (\App\Models\Pasien::where('status_inap', '1')->where('id_kamar', $data->id)->count() + \App\Models\PasienAnak::where('status_inap', '1')->where('id_kamar', $data->id)->count()) > 0)
                             <td>
                                 <span class="badge bg-success">Tersedia</span>
                             </td>

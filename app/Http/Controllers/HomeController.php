@@ -14,26 +14,26 @@ class HomeController extends Controller
     public function index()
     {
         // gedung flamboyan
-        $flamKosong = Kamar::where('gedung', 'Flamboyan')->where('jumlah_kasur', '>', '0')->count();
-        $flamTerisi = $flamKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Flamboyan')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Flamboyan')->count());
+        $flamKosong = Kamar::where('gedung', 'Flamboyan')->sum('jumlah_kasur');
+        $flamTerisi = (Pasien::where('status_inap', 1)->where('gedung', 'Flamboyan')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Flamboyan')->count());
 
         // gedung bougenville
-        $bougenKosong = Kamar::where('gedung', 'Bougenville')->where('jumlah_kasur', '>', '0')->count();
-        $bougenTerisi = $bougenKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Bougenville')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Bougenville')->count());
+        $bougenKosong = Kamar::where('gedung', 'Bougenville')->sum('jumlah_kasur');
+        $bougenTerisi = (Pasien::where('status_inap', 1)->where('gedung', 'Bougenville')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Bougenville')->count());
 
 
         // gedung kamboja
-        $kambKosong = Kamar::where('gedung', 'Kamboja')->where('jumlah_kasur', '>', '0')->count();
-        $kambTerisi = $kambKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Kamboja')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Kamboja')->count());
+        $kambKosong = Kamar::where('gedung', 'Kamboja')->sum('jumlah_kasur');
+        $kambTerisi = (Pasien::where('status_inap', 1)->where('gedung', 'Kamboja')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Kamboja')->count());
 
 
         // gedung melati
-        $melKosong = Kamar::where('gedung', 'Melati')->where('jumlah_kasur', '>', '0')->count();
-        $melTerisi = $melKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Melati')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Melati')->count());
+        $melKosong = Kamar::where('gedung', 'Melati')->sum('jumlah_kasur');
+        $melTerisi = (Pasien::where('status_inap', 1)->where('gedung', 'Melati')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Melati')->count());
 
         // gedung kebidanan
-        $kebidKosong = Kamar::where('gedung', 'Kebidanan')->where('jumlah_kasur', '>', '0')->count();
-        $kebidTerisi = $kebidKosong - (Pasien::where('status_inap', 1)->where('gedung', 'Kebidanan')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Kebidanan')->count());
+        $kebidKosong = Kamar::where('gedung', 'Kebidanan')->sum('jumlah_kasur');
+        $kebidTerisi = (Pasien::where('status_inap', 1)->where('gedung', 'Kebidanan')->count() + PasienAnak::where('status_inap', 1)->where('gedung', 'Kebidanan')->count());
 
 
         $pasienAktif = Pasien::where('status_inap', 1)->get();

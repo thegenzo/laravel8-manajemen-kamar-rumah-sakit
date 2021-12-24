@@ -20,6 +20,9 @@ class CreateRekamMedisAnaksTable extends Migration
             $table->foreign('id_pasien_anak')->references('id')->on('pasien_anaks')->constrained()->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('tensi_darah');
+            $table->integer('suhu_tubuh');
+            $table->integer('pernapasan');
+            $table->integer('nadi');
             $table->string('anamnesis');
             $table->string('terapi');
             $table->timestamps();

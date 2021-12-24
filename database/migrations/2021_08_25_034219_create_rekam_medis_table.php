@@ -21,6 +21,9 @@ class CreateRekamMedisTable extends Migration
             $table->foreign('id_pasien')->references('id')->on('pasiens');
 
             $table->string('tensi_darah');
+            $table->integer('suhu_tubuh');
+            $table->integer('pernapasan');
+            $table->integer('nadi');
             $table->string('anamnesis');
             $table->string('terapi');
             $table->timestamps();
